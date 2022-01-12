@@ -1,0 +1,37 @@
+#cloud-config
+runcmd:
+  - yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+  - systemctl enable amazon-ssm-agent 
+  - systemctl start amazon-ssm-agent
+package_upgrade: true
+packages:
+- epel-release
+- zsh
+- git
+- python-pip
+- mlocate
+- nc
+- amazon-efs-utils
+locale: es_ES.UTF-8
+ssh_pwauth:   false
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCUCSGTnSSEPyzNsGsbomg62rQieNopikcOeEbb9/XEYIBX7fdFYsMiGI3yD9LDtYRd1MMNZ3EwVhYSQN1mlN6BcXwI+MpduR1iSdXyzplRfbRV1PlmN8YGExbiyhYNdoAUdA5uxrf9S9uz5gwROgraSloUs1JUopIqbeDD7oet+4vqga3NQ2iFnbE3V3fPTItwm4tgnv7QaphIyIaoSSDaJ+DduPraNhPAN8ckUShh8REkbLya0ceB3zVR9TgAm4GyfVsl0G5NQN26hY6OyH46locEYHm5YNuoE25x9WKg+lIGjNG2cJ1RRujUjO1mNM73GvpzInUVMG6/Qux6iDGD63LLOD+G/02vwdG3P1mpLA/lrLrj57Hjo64ZWNK9kBabwSiItnQXzLcCO0pPCREbx/0FqaPTj7bNjdkgcejsm1hzkkR0VYQjNe15MGMC/e1zcCwZFJreBbxaykidFs1spaeEO71nfFA8FJ8x7GndHuz0StBnZWLCJqtQ00/kzZ0= andres@DCT00175
+users:
+  - default
+  - name: andres
+    gecos: Andres Gorostidi
+    selinux-user: staff_u
+    groups: users,wheel
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    passwd: $6$0BL715yzHxQF4YMd$t6DfhSCreF3WiqlVbACV95cPFfHVSKOh23rumtmeASPCESX8x9xP3jdUejX16gRUStgiHx8C2dwKZLI/js49y
+    ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCUCSGTnSSEPyzNsGsbomg62rQieNopikcOeEbb9/XEYIBX7fdFYsMiGI3yD9LDtYRd1MMNZ3EwVhYSQN1mlN6BcXwI+MpduR1iSdXyzplRfbRV1PlmN8YGExbiyhYNdoAUdA5uxrf9S9uz5gwROgraSloUs1JUopIqbeDD7oet+4vqga3NQ2iFnbE3V3fPTItwm4tgnv7QaphIyIaoSSDaJ+DduPraNhPAN8ckUShh8REkbLya0ceB3zVR9TgAm4GyfVsl0G5NQN26hY6OyH46locEYHm5YNuoE25x9WKg+lIGjNG2cJ1RRujUjO1mNM73GvpzInUVMG6/Qux6iDGD63LLOD+G/02vwdG3P1mpLA/lrLrj57Hjo64ZWNK9kBabwSiItnQXzLcCO0pPCREbx/0FqaPTj7bNjdkgcejsm1hzkkR0VYQjNe15MGMC/e1zcCwZFJreBbxaykidFs1spaeEO71nfFA8FJ8x7GndHuz0StBnZWLCJqtQ00/kzZ0= andres@DCT00175
+  - name: dacartec
+    gecos: Dacartec Admin
+    selinux-user: staff_u
+    groups: users,wheel
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    passwd: $6$0BL715yzHxQF4YMd$t6DfhSCreF3WiqlVbACV95cPFfHVSKOh23rumtmeASPCESX8x9xP3jdUejX16gRUStgiHx8C2dwKZLI/js49y
+    ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCUCSGTnSSEPyzNsGsbomg62rQieNopikcOeEbb9/XEYIBX7fdFYsMiGI3yD9LDtYRd1MMNZ3EwVhYSQN1mlN6BcXwI+MpduR1iSdXyzplRfbRV1PlmN8YGExbiyhYNdoAUdA5uxrf9S9uz5gwROgraSloUs1JUopIqbeDD7oet+4vqga3NQ2iFnbE3V3fPTItwm4tgnv7QaphIyIaoSSDaJ+DduPraNhPAN8ckUShh8REkbLya0ceB3zVR9TgAm4GyfVsl0G5NQN26hY6OyH46locEYHm5YNuoE25x9WKg+lIGjNG2cJ1RRujUjO1mNM73GvpzInUVMG6/Qux6iDGD63LLOD+G/02vwdG3P1mpLA/lrLrj57Hjo64ZWNK9kBabwSiItnQXzLcCO0pPCREbx/0FqaPTj7bNjdkgcejsm1hzkkR0VYQjNe15MGMC/e1zcCwZFJreBbxaykidFs1spaeEO71nfFA8FJ8x7GndHuz0StBnZWLCJqtQ00/kzZ0= andres@DCT00175
+final_message: "The system is finally up, after $UPTIME seconds"
